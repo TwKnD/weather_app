@@ -1,27 +1,30 @@
 import requests
 from config import *
-from pprint import pprint
-
-# TODO: swap request mode to XML for more data.
+from bs4 import BeautifulSoup
 
 baseUrl = "https://api.openweathermap.org/data/2.5/weather?q="
 city = 'Melbourne,AU'
-requestUrl = baseUrl + city + "&units=metric" + "&APPID=" + API_key
+requestUrl = baseUrl + city + "&units=metric&mode=xml" + "&APPID=" + API_key
 
-weatherData = requests.get(requestUrl).json()
+weatherData = requests.get(requestUrl)
+soup = BeautifulSoup(weatherData.text, 'xml')
 
-tempNow = weatherData['main']['temp']
-tempMax = weatherData['main']['temp_max']
-tempMin = weatherData['main']['temp_min']
-windDir = weatherData['wind']['deg']
-windSpeed = weatherData['wind']['speed']
+targetTest = soup.current
+print(targetTest)
+#print(soup.prettify())
 
 
-print("Weather For", city)
-print("Temp:", + tempNow)
-print("Max:", + tempMax)
-print("Min:", + tempMin)
-print("Direction:", + windDir)
-print("Speed:", + windSpeed)
-print('\n')
-pprint(weatherData)
+#tempNow =
+#tempMax = weatherData['main']['temp_max']
+#tempMin = weatherData['main']['temp_min']
+#windDir = weatherData['wind']['deg']
+#windSpeed = weatherData['wind']['speed']
+#
+#
+#print("Weather For", city)
+#print("Temp:", + tempNow)
+#print("Max:", + tempMax)
+#print("Min:", + tempMin)
+#print("Direction:", + windDir)
+#print("Speed:", + windSpeed)
+#print('\n')
