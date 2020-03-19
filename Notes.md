@@ -4,3 +4,5 @@ Simple Python Term [Simplified Python](https://www.simplifiedpython.net/openweat
 Simple Python App [our code world](https://ourcodeworld.com/articles/read/553/creating-very-simple-graphical-user-interfaces-with-python-using-appjar-tkinter-based-ui)  
 appJar Home [appJar](http://appjar.info/)  
 Pyton Docs [w3schools](https://www.w3schools.com/python/default.asp)  
+xml parsing [Documentation](https://lxml.de/index.html)
+BeautifulSoup [Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#)
