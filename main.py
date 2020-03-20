@@ -1,5 +1,5 @@
 import requests
-from config import *
+from config import API_key
 from bs4 import BeautifulSoup
 
 baseUrl = "https://api.openweathermap.org/data/2.5/weather?q="
