@@ -24,5 +24,12 @@ windSpeed_Kmh = str(float(windSpeed_Ms) * 3.6)
 
 # GUI
 root = tk.Tk()
+root.configure(bg="#32302f")
+
+# Draw widgets
+Location = tk.Label(root, text=city)
+
+# Position widgets
+Location.grid(row=0, column=0)
 
 root.mainloop()
