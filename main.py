@@ -46,16 +46,27 @@ windDir_draw = tk.Label(frame, text=windDir, bg=bgColor, fg=fgColor)
 
 # Position widgets
 # Top
-Location_draw.grid(row=0, column=0, columnspan=2, padx=10, pady=10, sticky='E')
-weatherState_draw.grid(row=0, column=3, columnspan=2, padx=10, pady=10)
-# Left
-tempNow_draw.grid(row=1, column=1, padx=10, pady=10, rowspan=2, sticky='W')
-tempMax_draw.grid(row=1, column=2, padx=10, pady=10, sticky='W')
-tempMin_draw.grid(row=2, column=2, padx=10, pady=10, sticky='W')
-# Right
-windInfo_draw.grid(row=1, column=3, columnspan=2, padx=10, pady=10)
-windSpeed_draw.grid(row=2, column=3, padx=10, pady=10)
-windDir_draw.grid(row=2, column=4, padx=10, pady=10, sticky='W')
+Location_draw.grid(row=0, column=0, padx=10, pady=10, sticky='E')
+weatherState_draw.grid(row=0, column=2, padx=10, pady=10,
+                       sticky='W')
+# Middle
+tempNow_draw.grid(row=1, column=0, padx=10, pady=10)
+tempMax_draw.grid(row=1, column=1, padx=10, pady=10)
+tempMin_draw.grid(row=1, column=2, padx=10, pady=10)
+# Bottom
+windInfo_draw.grid(row=2, column=0, padx=10, pady=10)
+windSpeed_draw.grid(row=2, column=1, padx=10, pady=10)
+windDir_draw.grid(row=2, column=2, padx=10, pady=10)
 
+# Gets the requested values of the height and width.
+windowWidth = root.winfo_reqwidth()
+windowHeight = root.winfo_reqheight()
+
+# Gets both half the screen width/height and window width/height
+positionRight = int((root.winfo_screenwidth()/2) - (windowWidth/2))
+positionDown = int((root.winfo_screenheight()/2) - (windowHeight/2))
+
+# Positions the window in the center of the page.
+root.geometry("+{}+{}".format(positionRight, positionDown))
 
 root.mainloop()
