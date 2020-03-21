@@ -42,9 +42,9 @@ windDir_draw = tk.Label(frame, text=windDir)
 # root.configure(bg="#32302f")
 
 # Position widgets
-Location_draw.grid(row=0, column=0)
-weatherState_draw.grid(row=0, column=3)
-tempNow_draw.grid(row=1, column=1)
+Location_draw.grid(row=0, column=0, padx=10, pady=10)
+weatherState_draw.grid(row=0, column=3, padx=10, pady=10)
+tempNow_draw.grid(row=1, column=1, padx=10, pady=10)
 
 
 root.mainloop()
