@@ -37,14 +37,22 @@ windInfo_draw = tk.Label(frame, text=windInfo)
 windSpeed_draw = tk.Label(frame, text=windSpeed_Kmh)
 windDir_draw = tk.Label(frame, text=windDir)
 
-
 # Colour widgets
-# root.configure(bg="#32302f")
+bgColor = '#32302f'
+frame.configure(bg=bgColor)
 
 # Position widgets
-Location_draw.grid(row=0, column=0, padx=10, pady=10)
-weatherState_draw.grid(row=0, column=3, padx=10, pady=10)
-tempNow_draw.grid(row=1, column=1, padx=10, pady=10)
+# Top
+Location_draw.grid(row=0, column=0, columnspan=2, padx=10, pady=10)
+weatherState_draw.grid(row=0, column=3, columnspan=2, padx=10, pady=10)
+# Left
+tempNow_draw.grid(row=1, column=1, padx=10, pady=10, rowspan=2)
+tempMax_draw.grid(row=1, column=2, padx=10, pady=10)
+tempMin_draw.grid(row=2, column=2, padx=10, pady=10)
+# Right
+windInfo_draw.grid(row=1, column=3, columnspan=2, padx=10, pady=10)
+windSpeed_draw.grid(row=2, column=3, padx=10, pady=10)
+windDir_draw.grid(row=2, column=4, padx=10, pady=10)
 
 
 root.mainloop()
