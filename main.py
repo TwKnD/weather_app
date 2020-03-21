@@ -12,7 +12,7 @@ requestUrl = baseUrl + city + "&units=metric&mode=xml" + "&APPID=" + API_key
 weatherData = requests.get(requestUrl)
 soup = BeautifulSoup(weatherData.text, 'xml')
 
-# Variables
+# Build variables from parsed XML
 weatherState = soup.weather.get('value').title()
 tempNow = soup.temperature.get('value')
 tempMax = soup.temperature.get('max')
@@ -24,12 +24,27 @@ windSpeed_Kmh = str(float(windSpeed_Ms) * 3.6)
 
 # GUI
 root = tk.Tk()
-root.configure(bg="#32302f")
+frame = tk.Frame(root)
+frame.pack()
 
 # Draw widgets
-Location = tk.Label(root, text=city)
+Location_draw = tk.Label(frame, text=city)
+weatherState_draw = tk.Label(frame, text=weatherState)
+tempNow_draw = tk.Label(frame, text=tempNow)
+tempMax_draw = tk.Label(frame, text=tempMax)
+tempMin_draw = tk.Label(frame, text=tempMin)
+windInfo_draw = tk.Label(frame, text=windInfo)
+windSpeed_draw = tk.Label(frame, text=windSpeed_Kmh)
+windDir_draw = tk.Label(frame, text=windDir)
+
+
+# Colour widgets
+# root.configure(bg="#32302f")
 
 # Position widgets
-Location.grid(row=0, column=0)
+Location_draw.grid(row=0, column=0)
+weatherState_draw.grid(row=0, column=3)
+tempNow_draw.grid(row=1, column=1)
+
 
 root.mainloop()
