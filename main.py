@@ -26,6 +26,8 @@ windSpeed_Kmh = str(float(windSpeed_Ms) * 3.6)
 root = tk.Tk()
 frame = tk.Frame(root)
 frame.pack()
+root.title('Weather App')
+root.geometry('300x150')
 
 # Colour widgets
 bgColor = '#32302f'
