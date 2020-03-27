@@ -5,8 +5,9 @@ import tkinter as tk
 
 # Build request URL
 baseUrl = "https://api.openweathermap.org/data/2.5/weather?q="
-city = 'Melbourne,AU'
-requestUrl = baseUrl + city + "&units=metric&mode=xml" + "&APPID=" + API_key
+city = 'Melbourne'
+countryCode = 'AU'
+requestUrl = baseUrl + city + ',' + countryCode + "&units=metric&mode=xml" + "&APPID=" + API_key
 
 # Get XML data & parse
 weatherData = requests.get(requestUrl)
@@ -24,10 +25,10 @@ windSpeed_Kmh = str(float(windSpeed_Ms) * 3.6)
 
 # GUI
 root = tk.Tk()
-frame = tk.Frame(root)
+frame = tk.Frame(root, padx=5, pady=5)
 frame.pack()
 root.title('Weather App')
-root.geometry('300x150')
+root.geometry('300x160')
 
 # Colour widgets
 bgColor = '#32302f'
