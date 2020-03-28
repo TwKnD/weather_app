@@ -1,6 +1,7 @@
 import requests
 from config import API_key
 from bs4 import BeautifulSoup
+from tkinter import *
 import tkinter as tk
 
 # Build request URL
@@ -28,15 +29,23 @@ root = tk.Tk()
 frame = tk.Frame(root, padx=5, pady=5)
 frame.pack()
 root.title('Weather App')
-root.geometry('300x160')
+# root.geometry('300x160')
 
 # Colour widgets
 bgColor = '#32302f'
 fgColor = '#ebdbb2'
 frame.configure(bg=bgColor)
 
+# For Menu
+cityList = [
+    "Canberra",
+    "Sydney",
+    "Melbourne"
+]
+menuDef = StringVar(frame)
+menuDef.set("Melbourne")
 # Draw widgets
-Location_draw = tk.Label(frame, text=city, bg=bgColor, fg=fgColor)
+Location_menu = OptionMenu(frame, menuDef, *cityList)
 weatherState_draw = tk.Label(frame, text=weatherState, bg=bgColor, fg=fgColor)
 tempNow_draw = tk.Label(frame, text="Current\n" + tempNow,
                         bg=bgColor, fg=fgColor)
@@ -49,7 +58,8 @@ windDir_draw = tk.Label(frame, text=windDir, bg=bgColor, fg=fgColor)
 
 # Position widgets
 # Top
-Location_draw.grid(row=0, column=0, padx=10, pady=10, sticky='E')
+# Location_draw.grid(row=0, column=0, padx=10, pady=10, sticky='E')
+Location_menu.grid(row=0, column=0, padx=10, pady=10, sticky='E')
 weatherState_draw.grid(row=0, column=2, padx=10, pady=10,
                        sticky='W')
 # Middle
