@@ -4,9 +4,25 @@ from bs4 import BeautifulSoup
 from tkinter import *
 import tkinter as tk
 
+# GUI
+root = tk.Tk()
+frame = tk.Frame(root, padx=5, pady=5)
+frame.pack()
+root.title('Weather App')
+# root.geometry('300x160')
+
+# Menu setup
+cityList = [
+    "Canberra",
+    "Sydney",
+    "Melbourne"
+]
+menuDef = StringVar(frame)
+menuDef.set(cityList[0])
+
 # Build request URL
 baseUrl = "https://api.openweathermap.org/data/2.5/weather?q="
-city = 'Melbourne'
+city = menuDef.get()
 countryCode = 'AU'
 requestUrl = baseUrl + city + ',' + countryCode + "&units=metric&mode=xml" + "&APPID=" + API_key
 
@@ -22,28 +38,14 @@ tempMin = soup.temperature.get('min')
 windInfo = soup.speed.get('name')
 windDir = soup.direction.get('code')
 windSpeed_Ms = soup.speed.get('value')
-windSpeed_Kmh = str(float(windSpeed_Ms) * 3.6)
+windSpeed_Kmh = str(round((float(windSpeed_Ms) * 3.6), 1))
 
-# GUI
-root = tk.Tk()
-frame = tk.Frame(root, padx=5, pady=5)
-frame.pack()
-root.title('Weather App')
-# root.geometry('300x160')
 
 # Colour widgets
 bgColor = '#32302f'
 fgColor = '#ebdbb2'
 frame.configure(bg=bgColor)
 
-# For Menu
-cityList = [
-    "Canberra",
-    "Sydney",
-    "Melbourne"
-]
-menuDef = StringVar(frame)
-menuDef.set("Melbourne")
 # Draw widgets
 Location_menu = OptionMenu(frame, menuDef, *cityList)
 weatherState_draw = tk.Label(frame, text=weatherState, bg=bgColor, fg=fgColor)
