@@ -12,16 +12,17 @@ root.title('Weather App')
 
 # Menu setup
 cityList = [
+    "Adelaide",
+    "Brisbane",
     "Canberra",
-    "Sydney",
-    "Melbourne"
+    "Darwin",
+    "Hobart",
+    "Melbourne",
+    "Perth",
+    "Sydney"
 ]
 menuDef = StringVar(main)
 menuDef.set(cityList[0])
-
-# Colour widgets
-bgColor = '#32302f'
-fgColor = '#ebdbb2'
 
 # Get XML data & parse
 def refresh():
