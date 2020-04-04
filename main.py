@@ -80,10 +80,11 @@ wind_frame = Frame(main)
 wind_frame.place(x=200, y=45, width=220, height=60)
 
 # Gets both half the screen width/height and window width/height
-positionRight = int((root.winfo_screenwidth()/2) - 150)
-positionDown = int((root.winfo_screenheight()/2) - 150)
+pos_x = int((root.winfo_screenwidth()/2) - 150)
+pos_y = int((root.winfo_screenheight()/2) - 150)
+pos_string = '+%d+%d' % (pos_x, pos_y)
 
 # Positions the window in the center of the page.
-root.geometry("430x115")
+root.geometry("430x115" + pos_string)
 
 root.mainloop()
