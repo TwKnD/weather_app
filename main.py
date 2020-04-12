@@ -24,6 +24,7 @@ cityList = [
 menuDef = StringVar(main)
 menuDef.set(cityList[0])
 
+
 # Get XML data & parse
 def refresh():
     # Build request URL
