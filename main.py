@@ -31,8 +31,7 @@ def refresh():
     baseUrl = "https://api.openweathermap.org/data/2.5/weather?q="
     city = menuDef.get()
     countryCode = 'AU'
-    requestUrl = (baseUrl + city + ',' + countryCode +
-                    "&units=metric&mode=xml" + "&APPID=" + API_key)
+    requestUrl = f"{baseUrl}{city},{countryCode}&units=metric&mode=xml&APPID={API_key}"
 
     # Get & prepare data
     weatherData = requests.get(requestUrl)
