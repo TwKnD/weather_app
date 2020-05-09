@@ -1,8 +1,12 @@
-import requests
-from config import API_key
-from bs4 import BeautifulSoup
-from tkinter import *
+"""
+Author: TwKnD
+Site: github.com/TwKnD
+"""
+from tkinter import Frame, StringVar, OptionMenu
 import tkinter as tk
+import requests
+from bs4 import BeautifulSoup
+from config import API_key
 
 # GUI
 root = tk.Tk()
@@ -27,52 +31,53 @@ menuDef.set(cityList[0])
 
 # Get XML data & parse
 def refresh():
+    """Responsible for getting new data and refreshing GUI"""
     # Build request URL
-    baseUrl = "https://api.openweathermap.org/data/2.5/weather?q="
+    base_url = "https://api.openweathermap.org/data/2.5/weather?q="
     city = menuDef.get()
-    countryCode = 'AU'
-    requestUrl = (baseUrl + city + ',' + countryCode +
-                    "&units=metric&mode=xml" + "&APPID=" + API_key)
+    country = 'AU'
+    req_url = (base_url + city + ',' + country +
+               "&units=metric&mode=xml" + "&APPID=" + API_key)
 
     # Get & prepare data
-    weatherData = requests.get(requestUrl)
-    soup = BeautifulSoup(weatherData.text, 'xml')
+    data_xml = requests.get(req_url)
+    soup = BeautifulSoup(data_xml.text, 'xml')
 
     # Build variables from parsed XML
-    weatherState = soup.weather.get('value').title()
-    tempNow = str(round(float(soup.temperature.get('value')), 1))
-    tempMax = str(round(float(soup.temperature.get('max')), 1))
-    tempMin = str(round(float(soup.temperature.get('min')), 1))
-    windInfo = soup.speed.get('name')
-    windDir = soup.direction.get('code')
-    windSpeed_Ms = soup.speed.get('value')
-    windSpeed_Kmh = str(round((float(windSpeed_Ms) * 3.6), 1))
+    description = soup.weather.get('value').title()
+    t_now = str(round(float(soup.temperature.get('value')), 1))
+    t_max = str(round(float(soup.temperature.get('max')), 1))
+    t_min = str(round(float(soup.temperature.get('min')), 1))
+    w_desc = soup.speed.get('name')
+    w_dir = soup.direction.get('code')
+    w_speed_ms = soup.speed.get('value')
+    w_speed_kmh = str(round((float(w_speed_ms) * 3.6), 1))
 
     # Draw widgets
-    weatherState_draw = tk.Label(main, text=weatherState, font="courier, 12")
-    tempNow_draw = tk.Label(temp_frame, text=tempNow, font="courier, 26", anchor="w")
-    tempMax_draw = tk.Label(temp_frame, text=tempMax, font="courier, 12")
-    tempMin_draw = tk.Label(temp_frame, text=tempMin, font="courier, 12")
-    windInfo_draw = tk.Label(wind_frame, text=windInfo, font="courier, 10")
-    windSpeed_draw = tk.Label(wind_frame, text=windSpeed_Kmh, font="courier, 12", anchor="e")
-    windKmh_draw = tk.Label(wind_frame, text="km/h", font="courier, 8", anchor="nw")
-    windDir_draw = tk.Label(wind_frame, text=windDir, font="courier, 12")
+    description_draw = tk.Label(main, text=description, font="courier, 12")
+    t_now_draw = tk.Label(temp_frame, text=t_now, font="courier, 26", anchor="w")
+    t_max_draw = tk.Label(temp_frame, text=t_max, font="courier, 12")
+    t_min_draw = tk.Label(temp_frame, text=t_min, font="courier, 12")
+    w_desc_draw = tk.Label(wind_frame, text=w_desc, font="courier, 10")
+    w_speed_draw = tk.Label(wind_frame, text=w_speed_kmh, font="courier, 12", anchor="e")
+    w_kmh_draw = tk.Label(wind_frame, text="km/h", font="courier, 8", anchor="nw")
+    w_dir_draw = tk.Label(wind_frame, text=w_dir, font="courier, 12")
 
     # Position widgets
     # Top
-    weatherState_draw.place(x=200, y=10, width=220, height=25)
+    description_draw.place(x=200, y=10, width=220, height=25)
     # Left
-    tempNow_draw.place(x=5, y=5, width=90, height=50)
-    tempMax_draw.place(x=110, y=13, width=60, height=15)
-    tempMin_draw.place(x=110, y=38, width=60, height=15)
+    t_now_draw.place(x=5, y=5, width=90, height=50)
+    t_max_draw.place(x=110, y=13, width=60, height=15)
+    t_min_draw.place(x=110, y=38, width=60, height=15)
     # Right
-    windInfo_draw.place(x=5, y=5, width=210, height=20)
-    windSpeed_draw.place(x=35, y=35, width=50, height=15)
-    windKmh_draw.place(x=90, y=35, width=40, height=15)
-    windDir_draw.place(x=135, y=35, width=50, height=15)
+    w_desc_draw.place(x=5, y=5, width=210, height=20)
+    w_speed_draw.place(x=35, y=35, width=50, height=15)
+    w_kmh_draw.place(x=90, y=35, width=40, height=15)
+    w_dir_draw.place(x=135, y=35, width=50, height=15)
 
-Location_menu = OptionMenu(main, menuDef, *cityList)
-Location_menu.place(x=10, y=10, width=110, height=25)
+city_menu = OptionMenu(main, menuDef, *cityList)
+city_menu.place(x=10, y=10, width=110, height=25)
 update = tk.Button(main, text="refresh", command=refresh)
 update.place(x=130, y=10, width=60, height=25)
 temp_frame = Frame(main)
@@ -85,6 +90,5 @@ pos_x = int((root.winfo_screenwidth()/2) - 150)
 pos_y = int((root.winfo_screenheight()/2) - 150)
 
 # Positions the window in the center of the page.
-root.geometry(f"430x115+{pos_x}+{pos_y}")
-
+root.geometry("430x115+{}+{}".format(pos_x, pos_y))
 root.mainloop()
